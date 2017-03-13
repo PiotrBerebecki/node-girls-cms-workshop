@@ -1,6 +1,7 @@
 var http = require('http');
 var fs = require('fs');
 var path = require('path');
+var querystring = require ('querystring');
 
 var server = http.createServer(handler);
 
@@ -8,7 +9,7 @@ var message = "I'm happy";
 
 function handler(request, response) {
   var endpoint = request.url;
-
+  console.log(endpoint);
   var extension = path.extname(request.url).slice(1);
 
   if (endpoint === '/') {
@@ -39,7 +40,20 @@ function handler(request, response) {
       });
       response.end(file);
     });
+  } else if (endpoint === '/create-post') {
+    var allTheData = '';
 
+    request.on('data', function(chunkOfData) {
+      // do something
+      allTheData += chunkOfData;
+    });
+
+    request.on('end', function() {
+      var convertedData = querystring.parse(allTheData);
+      console.log(convertedData);
+      response.writeHead(302,{'Location':'/'});
+      response.end();
+    });
   } else if (endpoint === '/node') {
 
     response.writeHead(200, {
