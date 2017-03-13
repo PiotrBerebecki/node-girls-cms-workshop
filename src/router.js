@@ -3,20 +3,17 @@ var path = require('path');
 var handler = require('./handler');
 
 
-function router(request, response) {
-  var endpoint = request.url;
-  var extension = path.extname(request.url).slice(1);
+
+function router(req, res) {
+  var endpoint = req.url;
+  var extension = path.extname(endpoint).slice(1);
 
   if (endpoint === '/') {
-    handler.serveLanding(request, response);
+    handler.serveLanding(req, res);
   } else if (extension) {
-    handler.serveAssets(request, response, extension);
-  } else if (endpoint === '/create-post') {
-    handler.createPost(request, response);
-  } else {
-    handler.serveNotFound(request, response);
+    handler.serveAssets(req, res, extension);
   }
-}
 
+}
 
 module.exports = router;

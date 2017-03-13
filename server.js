@@ -1,12 +1,9 @@
 var http = require('http');
-
 var router = require('./src/router');
-
 
 var server = http.createServer(router);
 
-var message = "I'm happy";
-
-server.listen(4000, function() {
-  console.log('server on port 4000');
+var port = 4000;
+server.listen(port, function() {
+  console.log('listening on port: ', port);
 });
