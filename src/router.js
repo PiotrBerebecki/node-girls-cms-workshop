@@ -12,6 +12,8 @@ function router(req, res) {
     handler.serveLanding(req, res);
   } else if (extension) {
     handler.serveAssets(req, res, extension);
+  } else if (endpoint === '/create/post') {
+    handler.savePost(req, res);
   }
 
 }
