@@ -12,9 +12,13 @@ $(document).ready(function() {
         var thumbnail       = document.createElement('img');
         var postContainer   = document.getElementsByClassName('post-container')[0];
 
+        var dateOptions = { year: 'numeric', month: 'short', day: '2-digit',
+          hour: '2-digit', minute: '2-digit' };
+        var date = new Date(parseInt(blogPost, 10)).toLocaleDateString('en-GB', dateOptions);
+
         thumbnail.src = "./img/logo2.png";
         thumbnail.className = "thumbnail";
-        postText.innerHTML = data[blogPost];
+        postText.innerHTML = date + ' ' + data[blogPost];
         postDiv.className = "post";
 
         postDiv.appendChild(thumbnail);
