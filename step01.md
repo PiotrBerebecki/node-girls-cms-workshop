@@ -1,4 +1,4 @@
-# Step 1 - Set up your first project
+## Step 1 - Set up your first project
 
 Often when creating a project, you might be installing lots of different things along the way.
 
